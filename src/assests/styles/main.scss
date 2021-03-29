@@ -1,0 +1,25 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    //font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+input, textarea {
+    outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+button {
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+}
+h1, h2, h3, h4, h5, h6, p, hr, ul, ol {
+    margin: 0;
+    padding: 0;
+}
