@@ -1,32 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './header.scss';
-import { api } from '../../services/api';
 
-interface HeaderPropTypes {
-    greeting: string,
-    cool: number
-}
 
-export const Header: React.FC<HeaderPropTypes> = (props) => {
-
-    const { greeting, cool } = props;
-
-    const getData = async () => {
-        try {
-            const responce = await api.GET('todos');
-            console.log(responce)
-        } catch (e) {
-
-        }
-    }
-
-    useEffect(() => {
-        getData();
-    }, []);
- 
+export const Header: React.FC = () => {
     return(
-        <header>
-            {greeting} {cool}
+        <header className="header">
+            <div className="header__container">
+                <h2 className="header__title">Quiz!</h2>
+                <ul className="header__nav">
+                    <li>Main</li>
+                    <li>|</li>
+                    <li>About</li>
+                </ul>
+            </div>
         </header>
     )
 };
