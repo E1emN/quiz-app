@@ -1,0 +1,84 @@
+@import '../../assests/styles/mixins.scss';
+@import '../../assests/styles/vaiables.scss';
+
+.quiz {
+    @include main;
+    margin-top: 50px;
+    &__container {
+        width: 1000px;
+        display: flex;
+        flex-direction: column;
+    }
+    &__count {
+        width: 220px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: $secondary;
+        color: $primary;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    &__question {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid $primary;
+        border-radius: 15px;
+        span {
+            font-size: 18px;
+            padding: 20px 0;
+            width: 90%;
+            font-weight: 600;
+            color: $primary;
+        }
+    }
+    &__answers {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &-answer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border: 1px solid $primary;
+            border-radius: 15px;
+            margin: 5px 0;
+            span {
+                font-size: 18px;
+                padding: 8px 0;
+                width: 90%;
+            }
+            &:hover {
+                background: #92b3e8;
+                cursor: pointer;
+            }
+        }
+    }
+    &__next {
+        width: 100px;
+        height: 40px;
+        border-radius: 10px;
+        background: $primary;
+        color: #fff;
+        border: none;
+        margin-top: 15px;
+        &:disabled {
+            background: #8c9abf;
+        }
+    }
+}
+
+@media(max-width: 1020px) {
+    .quiz {
+        &__container {
+            width: 90%;
+        }
+    }
+}

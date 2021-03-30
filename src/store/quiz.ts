@@ -7,7 +7,7 @@ export const getQuiz = createEffect(async (handler: IForm) => {
     const { number, category, difficulty, type } = handler;
     const response = await api.GET(`api.php?amount=${number}&category=${category}&difficulty=${difficulty}&type=${type}`);
     if (response.response_code === 0) {
-        return response
+        return response.results
     } else {
         openErrorMessage();
     }

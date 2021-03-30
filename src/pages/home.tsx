@@ -1,12 +1,12 @@
 import React from 'react';
 import { Header } from '../components/Header/header';
-import { Select } from '../components/Select/select';
+import { Main } from '../components/Main/main';
 
 const HomePage: React.FC = () => {
     return(
         <>
             <Header/>
-            <Select />
+            <Main />
         </>
     )
 };
