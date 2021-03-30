@@ -1,0 +1,42 @@
+@import '../../assests/styles/mixins.scss';
+@import '../../assests/styles/vaiables.scss';
+
+.select {
+    @include main;
+    margin-top: 50px;
+    &__container {
+        @include container;
+        flex-direction: column;
+    }
+    &__title {
+        color: $primary;
+        font-size: 20px;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        width: 300px;
+        input, select {
+            width: 95%;
+            padding-left: 5%;
+            height: 30px;
+            border-radius: 10px;
+            border: 1px solid $primary;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        button {
+            width: 150px;
+            height: 40px;
+            border-radius: 15px;
+            border: none;
+            background: $primary;
+            color: #fff;
+            font-size: 16px;
+            &:disabled {
+                background: #8c9abf;
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-const apiUrl = 'https://jsonplaceholder.typicode.com/';
+const apiUrl = 'https://thingproxy.freeboard.io/fetch/https://opentdb.com/';
 
 const checkStatus = (response: any) => {
     if (response.ok) {
@@ -14,11 +14,12 @@ const checkStatus = (response: any) => {
 };
 
 const headers = {
-    'Content-Type': 'application/json'
+    //'Content-Type': 'application/json',
 }
 
 const setSettings = (method: string, body?: object) => {
     const settings = {
+        RequestMode: 'no-cors',
         method,
         headers,
         body: body && body instanceof FormData ? body : JSON.stringify(body)
