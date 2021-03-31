@@ -21,5 +21,5 @@ export const getQuiz = createEffect(async (handler: IForm) => {
         openErrorMessage();
     }
 });
-export const $quiz = createStore([])
+export const $quiz = createStore<IQuiz[]>([])
     .on(getQuiz.doneData, (_, quiz) => quiz);
