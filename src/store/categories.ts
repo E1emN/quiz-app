@@ -1,5 +1,5 @@
 import { createEffect, createStore } from 'effector';
-import { api } from '../services/api';
+import { api } from '../utils/api';
 import { ICategory } from '../interfaces/category';
 
 export const getCategories = createEffect(async () => {

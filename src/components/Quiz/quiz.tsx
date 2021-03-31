@@ -1,7 +1,12 @@
 import React from 'react';
 import './quiz.scss';
+import { $quiz } from '../../store/quiz';
+import { useStore } from 'effector-react';
 
 export const Quiz: React.FC = () => {
+
+    const quiz = useStore($quiz);
+    console.log(quiz);
     return(
         <div className="quiz">
             <div className="quiz__container">
