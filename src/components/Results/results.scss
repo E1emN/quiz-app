@@ -21,6 +21,7 @@
         }
         th, td {
             border-right: 1px solid $primary;
+            height: 50px;
             &:last-child {
                 border-right: none;
             }
@@ -29,7 +30,7 @@
             color: $secondary;
         }
         &_correct {
-            color: $primary;
+            color: green;
         }
     }
     &__new {

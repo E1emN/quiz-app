@@ -3,6 +3,7 @@ import './quiz.scss';
 import { $quiz } from '../../store/quiz';
 import { setResults, showResults } from '../../store/results';
 import { useStore } from 'effector-react';
+import he from 'he';
 
 export const Quiz: React.FC = () => {
 
@@ -48,7 +49,7 @@ export const Quiz: React.FC = () => {
                     Question № {current} of {quiz.length}
                 </div>
                 <div className="quiz__question">
-                    <span>{quiz[current - 1].question}</span>
+                    <span>{he.decode(quiz[current - 1].question)}</span>
                 </div>
                 <div className="quiz__answers">
                     {quiz[current - 1].options.map((option: string) => (
@@ -57,7 +58,7 @@ export const Quiz: React.FC = () => {
                             className={option === answer ? 'quiz__answers-answer quiz__answers-answer_selected' : 'quiz__answers-answer'} 
                             onClick={() => select(option)} 
                         >
-                            <span>{option}</span>
+                            <span>{he.decode(option)}</span>
                         </div>
                     ))}
                 </div>

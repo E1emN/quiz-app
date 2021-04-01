@@ -3,6 +3,7 @@ import './results.scss';
 import { $results, closeResults, resetResults } from '../../store/results';
 import { resetQuiz } from '../../store/quiz';
 import { useStore } from 'effector-react';
+import he from 'he';
 
 export const Results: React.FC = () => {
 
@@ -31,9 +32,9 @@ export const Results: React.FC = () => {
                         </tr>
                         {results.map(r => (
                             <tr key={r.question}>
-                                <td>{r.question}</td>
-                                <td>{r.currentAnswer}</td>
-                                <td>{r.userAnswer}</td>
+                                <td>{he.decode(r.question)}</td>
+                                <td>{he.decode(r.currentAnswer)}</td>
+                                <td>{he.decode(r.userAnswer)}</td>
                                 <td className={r.currentAnswer === r.userAnswer ? 'results__results_correct' : 'results__results_incorrect'}>
                                     {r.currentAnswer === r.userAnswer ? 'Yes' : 'No'}
                                 </td>
