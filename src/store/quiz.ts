@@ -1,4 +1,4 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, createStore, createEvent } from 'effector';
 import { api } from '../utils/api';
 import { IForm } from '../interfaces/form';
 import { IQuiz } from '../interfaces/quiz';
@@ -21,5 +21,7 @@ export const getQuiz = createEffect(async (handler: IForm) => {
         openErrorMessage();
     }
 });
+export const resetQuiz = createEvent();
 export const $quiz = createStore<IQuiz[]>([])
-    .on(getQuiz.doneData, (_, quiz) => quiz);
+    .on(getQuiz.doneData, (_, quiz) => quiz)
+    .reset(resetQuiz);

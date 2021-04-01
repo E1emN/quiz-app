@@ -1,0 +1,46 @@
+@import '../../assests/styles/mixins.scss';
+@import '../../assests/styles/vaiables.scss';
+
+.results {
+    @include main;
+    margin-top: 50px;
+    &__container {
+        @include container;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__results {
+        margin-top: 20px;
+        width: 100%;
+        border-radius: 15px;
+        border: 1px solid $primary;
+        td {
+            text-align: center;
+            border-top: 1px solid $primary;
+            font-size: 16px;
+        }
+        th, td {
+            border-right: 1px solid $primary;
+            &:last-child {
+                border-right: none;
+            }
+        }
+        &_incorrect {
+            color: $secondary;
+        }
+        &_correct {
+            color: $primary;
+        }
+    }
+    &__new {
+        margin-top: 20px;
+        width: 150px;
+        height: 40px;
+        border-radius: 100px;
+        border: none;
+        border: none;
+        background: $primary;
+        color: #fff;
+        font-size: 20px;
+    }
+}

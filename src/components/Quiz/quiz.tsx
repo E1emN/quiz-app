@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './quiz.scss';
 import { $quiz } from '../../store/quiz';
-import { setResults } from '../../store/results';
+import { setResults, showResults } from '../../store/results';
 import { useStore } from 'effector-react';
 
 export const Quiz: React.FC = () => {
@@ -19,7 +19,14 @@ export const Quiz: React.FC = () => {
     const next = () => {
         if (!isDisabled) {
             if (quiz.length === current) {
-                console.log('Thats all!')
+                setResults({
+                    questionNumber: current,
+                    question: quiz[current - 1].question,
+                    currentAnswer: quiz[current - 1].correct_answer,
+                    userAnswer: answer,
+                    isCurrect: quiz[current - 1].correct_answer === answer
+                });
+                showResults();
             } else {
                 setResults({
                     questionNumber: current,
