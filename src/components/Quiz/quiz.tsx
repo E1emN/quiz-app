@@ -39,6 +39,7 @@ export const Quiz: React.FC = () => {
                 setCurrent(current + 1);
                 setDisabled(true);
             }
+            setAnswer('');
         }
     };
 

@@ -19,8 +19,7 @@ export const Results: React.FC = () => {
         <div className="results">
             <div className="results__container">
                 <h3 className="results__grade">
-                    Your results is 
-                    {results.filter(r => r.isCurrect === true).length}/{results.length}
+                    Your results is {results.filter(r => r.isCurrect === true).length}/{results.length}
                 </h3>
                 <table className="results__results">
                     <tbody>
