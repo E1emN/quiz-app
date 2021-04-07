@@ -1,0 +1,24 @@
+@import '../../assests/styles/mixins.scss';
+@import '../../assests/styles/vaiables.scss';
+
+.suspense {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border-top: 2px solid $primary;
+        border-bottom: 2px solid $primary;
+        animation: 0.5s infinite loading;
+    }
+}
+
+@keyframes loading {
+    100% {
+        transform: rotate(360deg);
+    }
+}
