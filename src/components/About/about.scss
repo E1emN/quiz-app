@@ -1,0 +1,19 @@
+@import '../../assests/styles/mixins.scss';
+@import '../../assests/styles/vaiables.scss';
+
+.about {
+    @include main;
+    margin-top: 50px;
+    &__container {
+        @include container;
+        flex-direction: column;
+    }
+    a { 
+        margin-top: 20px;
+        color: $primary;
+        text-decoration: none;
+        &:hover {
+            color: $secondary;
+        }
+    }
+}
