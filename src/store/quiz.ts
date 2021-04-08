@@ -1,4 +1,4 @@
-import { createEffect, createStore, createEvent } from 'effector';
+import { createEffect, createStore, createEvent, sample } from 'effector';
 import { api } from '../utils/api';
 import { IForm } from '../interfaces/form';
 import { IQuiz } from '../interfaces/quiz';
@@ -21,7 +21,14 @@ export const getQuiz = createEffect(async (handler: IForm) => {
         openErrorMessage();
     }
 });
+export const saveQuiz = createEvent();
 export const resetQuiz = createEvent();
-export const $quiz = createStore<IQuiz[]>([])
+export const $quiz = createStore<IQuiz[]>(JSON.parse(localStorage.getItem('quiz')) || [])
     .on(getQuiz.doneData, (_, quiz) => quiz)
-    .reset(resetQuiz);
+    .on(saveQuiz, (quiz) => localStorage.setItem('quiz', JSON.stringify(quiz)))
+    .on(resetQuiz, () => []);
+
+sample({
+    source: $quiz,
+    target: saveQuiz
+});

@@ -10,6 +10,7 @@ export const Results: React.FC = () => {
     const results = useStore($results);
 
     const newQuiz = () => {
+        localStorage.clear();
         resetQuiz();
         closeResults();
         resetResults();

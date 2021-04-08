@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './quiz.scss';
 import { $quiz } from '../../store/quiz';
 import { setResults, showResults } from '../../store/results';
@@ -8,7 +8,7 @@ import he from 'he';
 export const Quiz: React.FC = () => {
 
     const quiz = useStore($quiz);
-    const [current, setCurrent] = useState(1); 
+    const [current, setCurrent] = useState(JSON.parse(localStorage.getItem('current')) || 1); 
     const [isDisabled, setDisabled] = useState(true);
     const [answer, setAnswer] = useState('');
 
@@ -16,6 +16,10 @@ export const Quiz: React.FC = () => {
         setDisabled(false);
         setAnswer(selected);
     };
+
+    useEffect(() => {
+        localStorage.setItem('current', current);
+    }, [current]);
 
     const next = () => {
         if (!isDisabled) {
