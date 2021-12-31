@@ -1,4 +1,4 @@
-export const shuffle = (array: string[]) => {
+export const shuffle = <T>(array: T[]) => {
     array = [...array];
   
     for (let i = array.length - 1; i > 0; i--) {

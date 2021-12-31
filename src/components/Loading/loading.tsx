@@ -1,7 +1,7 @@
 import React from 'react';
 import './loading.scss';
 import { useStore } from 'effector-react';
-import { $isLoading } from '../../store/loading';
+import { $isLoading } from '../../models/loading';
 
 const Loading: React.FC = () => {
 

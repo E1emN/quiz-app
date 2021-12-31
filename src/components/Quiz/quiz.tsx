@@ -1,73 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './quiz.scss';
-import { $quiz } from '../../store/quiz';
-import { setResults, showResults } from '../../store/results';
+import { $quiz } from '../../models/quiz';
+import { $current, $answer, setAnswer, next } from '../../models/answers';
 import { useStore } from 'effector-react';
 import he from 'he';
 
 export const Quiz: React.FC = () => {
 
     const quiz = useStore($quiz);
-    const [current, setCurrent] = useState(JSON.parse(localStorage.getItem('current')) || 1); 
-    const [isDisabled, setDisabled] = useState(true);
-    const [answer, setAnswer] = useState('');
-
-    const select = (selected: string) => {
-        setDisabled(false);
-        setAnswer(selected);
-    };
-
-    useEffect(() => {
-        localStorage.setItem('current', current);
-    }, [current]);
-
-    const next = () => {
-        if (!isDisabled) {
-            if (quiz.length === current) {
-                setResults({
-                    questionNumber: current,
-                    question: quiz[current - 1].question,
-                    currentAnswer: quiz[current - 1].correct_answer,
-                    userAnswer: answer,
-                    isCurrect: quiz[current - 1].correct_answer === answer
-                });
-                showResults();
-            } else {
-                setResults({
-                    questionNumber: current,
-                    question: quiz[current - 1].question,
-                    currentAnswer: quiz[current - 1].correct_answer,
-                    userAnswer: answer,
-                    isCurrect: quiz[current - 1].correct_answer === answer
-                });
-                setCurrent(current + 1);
-                setDisabled(true);
-            }
-            setAnswer('');
-        }
-    };
+    const current = useStore($current);
+    const answer = useStore($answer);
 
     return(
         <div className="quiz">
             <div className="quiz__container">
                 <div className="quiz__count">
-                    Question № {current} of {quiz.length}
+                    Question № {current + 1} of {quiz.length}
                 </div>
                 <div className="quiz__question">
-                    <span>{he.decode(quiz[current - 1].question)}</span>
+                    <span>{he.decode(quiz[current].question)}</span>
                 </div>
                 <div className="quiz__answers">
-                    {quiz[current - 1].options.map((option: string) => (
+                    {quiz[current].options.map((option: string) => (
                         <div 
                             key={option}
                             className={option === answer ? 'quiz__answers-answer quiz__answers-answer_selected' : 'quiz__answers-answer'} 
-                            onClick={() => select(option)} 
+                            onClick={() => setAnswer(option)} 
                         >
                             <span>{he.decode(option)}</span>
                         </div>
                     ))}
                 </div>
-                <button className="quiz__next" onClick={() => next()} disabled={isDisabled}>
+                <button className="quiz__next" onClick={() => next()} disabled={!answer}>
                     Next
                 </button>
             </div>

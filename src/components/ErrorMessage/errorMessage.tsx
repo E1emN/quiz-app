@@ -1,7 +1,7 @@
 import React from 'react';
 import './errorMessage.scss';
 import { useStore } from 'effector-react';
-import { $isError, closeErrorMessage } from '../../store/errorMessage';
+import { $isError, closeErrorMessage } from '../../models/errorMessage';
 
 const ErrorMessage: React.FC = () => {
 
@@ -12,8 +12,7 @@ const ErrorMessage: React.FC = () => {
         <div className="error-message">
             <div className="error-message__modal">
                 <p className="error-message__modal-text">
-                    The API doesn't have enough questions for your query. (Ex.
-                    Asking for 50 Questions in a Category that only has 20.)
+                    An error has occurred
                 </p>
                 <button className="error-message__modal-button" onClick={() => closeErrorMessage()}>OK</button>
             </div>

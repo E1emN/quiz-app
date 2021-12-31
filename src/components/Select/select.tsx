@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './select.scss';
-import {  useFormik } from 'formik';
-import { IForm } from '../../interfaces/form';
-import { getCategories, $categories } from '../../store/categories';
-import { useStore } from 'effector-react';
-import { getQuiz } from '../../store/quiz';
+import { $categories, categoriesGate } from '../../models/categories';
+import { useStore, useGate } from 'effector-react';
+import { $form, setCategory, setType, setNumber, setDifficulty, submit } from '../../models/form';
 
-interface ISelect {
+interface SelectValues {
     name: string,
     value: string
 }
@@ -14,8 +12,9 @@ interface ISelect {
 export const Select: React.FC = () => {
 
     const categories = useStore($categories);
-    const [isDisabled, setDisables] = useState(true);
-    const difficulty: ISelect[] = [
+    const form = useStore($form);
+    useGate(categoriesGate);
+    const difficulty: SelectValues[] = [
         {
             name: 'Any',
             value: ''
@@ -33,7 +32,7 @@ export const Select: React.FC = () => {
             value: 'hard'
         }
     ];
-    const types: ISelect[] = [
+    const types: SelectValues[] = [
         {
             name: 'Any type',
             value: ''
@@ -46,48 +45,29 @@ export const Select: React.FC = () => {
             name: 'True / False',
             value: 'boolean'
         }
-    ]  
-
-    const formik = useFormik<IForm>({
-        initialValues: {
-            number: '',
-            category: '',
-            difficulty: '',
-            type: ''
-        },
-        onSubmit: (values: IForm) => {
-            getQuiz(values)
-        }
-    });
-
-    useEffect(() => {
-        getCategories();
-    }, []);
-
-    useEffect(() => {
-        if (formik.values.number !== '') {
-            setDisables(false)
-        } else {
-            setDisables(true)
-        }
-    }, [formik.values])
+    ];
+    
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        submit();
+    };
 
     return(
         <div className="select">
             <div className="select__container">
                 <h3 className="select__title">Select Quiz</h3>
-                <form className="select__form" onSubmit={formik.handleSubmit}>
+                <form className="select__form" onSubmit={handleSubmit}>
                     <input
                         type="number"
                         placeholder="number of questions"
                         name="number"
-                        value={formik.values.number}
-                        onChange={formik.handleChange}
+                        value={form.number}
+                        onChange={e => setNumber(e.target.value)}
                     />
                     <select
                         name='category'
-                        value={formik.values.category}
-                        onChange={formik.handleChange}
+                        value={form.category}
+                        onChange={e => setCategory(e.target.value)}
                     >   
                         <option value=''>Select category</option>
                         {categories.map(category => (
@@ -98,8 +78,8 @@ export const Select: React.FC = () => {
                     </select>
                     <select
                         name='difficulty'
-                        value={formik.values.difficulty}
-                        onChange={formik.handleChange}
+                        value={form.difficulty}
+                        onChange={e => setDifficulty(e.target.value)}
                     >   
                         <option value=''>Select difficulty</option>
                         {difficulty.map(d => (
@@ -110,8 +90,8 @@ export const Select: React.FC = () => {
                     </select>
                     <select
                         name='type'
-                        value={formik.values.type}
-                        onChange={formik.handleChange}
+                        value={form.type}
+                        onChange={e => setType(e.target.value)}
                     >   
                         <option value=''>Select Type</option>
                         {types.map(type => (
@@ -122,7 +102,7 @@ export const Select: React.FC = () => {
                     </select>
                     <button 
                         type="submit" 
-                        disabled={isDisabled}
+                        disabled={!form.number}
                     >
                         Start Quiz
                     </button>

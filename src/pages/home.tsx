@@ -3,8 +3,8 @@ import { Header } from '../components/Header/header';
 import { Quiz } from '../components/Quiz/quiz';
 import { Select } from '../components/Select/select';
 import { useStore } from 'effector-react';
-import { $quiz } from '../store/quiz';
-import { $isResultsShow } from '../store/results';
+import { $quiz } from '../models/quiz';
+import { $isResultsShow } from '../models/results';
 import { Results } from '../components/Results/results';
 
 const HomePage: React.FC = () => {

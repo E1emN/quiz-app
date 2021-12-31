@@ -1,20 +1,13 @@
 import React from 'react';
 import './results.scss';
-import { $results, closeResults, resetResults } from '../../store/results';
-import { resetQuiz } from '../../store/quiz';
+import { $results } from '../../models/results';
+import { reset } from '../../models/quiz';
 import { useStore } from 'effector-react';
 import he from 'he';
 
 export const Results: React.FC = () => {
 
     const results = useStore($results);
-
-    const newQuiz = () => {
-        localStorage.clear();
-        resetQuiz();
-        closeResults();
-        resetResults();
-    };
 
     return(
         <div className="results">
@@ -42,7 +35,7 @@ export const Results: React.FC = () => {
                         ))}
                     </tbody>
                 </table>
-                <button className="results__new" onClick={() => newQuiz()}>
+                <button className="results__new" onClick={() => reset()}>
                     New Quiz!
                 </button>
             </div>
