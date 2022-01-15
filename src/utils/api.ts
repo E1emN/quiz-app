@@ -1,4 +1,4 @@
-const apiUrl = 'https://thingproxy.freeboard.io/fetch/https://opentdb.com/';
+const apiUrl = 'https://opentdb.com/';
 
 const checkStatus = (response: Response) => {
     if (response.ok) {
